@@ -17,9 +17,9 @@ public class ManagementTest {
     @Test
     void testParallel() {
         Results results = Runner.path("classpath:features")
-                .outputCucumberJson(true)    // genera JSON para el reporte
-                .tags("~@ignore")            // ignora escenarios con @ignore
-                .parallel(4);                // número de hilos en paralelo
+                .outputCucumberJson(true)
+                .tags("~@ignore")
+                .parallel(4);
 
         if (results.getFailCount() > 0) {
             throw new RuntimeException("Pruebas fallidas: " + results.getErrorMessages());

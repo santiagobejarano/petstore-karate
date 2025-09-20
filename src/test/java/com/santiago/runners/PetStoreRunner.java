@@ -6,7 +6,6 @@ class PetStoreRunner {
 
     @Karate.Test
     Karate testPetStore() {
-        // Busca el feature en src/test/resources/features con extensión .feature
         return Karate.run("classpath:features/petstore.feature");
     }
 }
