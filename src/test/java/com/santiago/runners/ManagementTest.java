@@ -21,14 +21,14 @@ public class ManagementTest {
                 .tags("~@ignore")
                 .parallel(4);
 
+        generateCucumberReport(results.getReportDir());
+
         if (results.getFailCount() > 0) {
             throw new RuntimeException("Pruebas fallidas: " + results.getErrorMessages());
         }
-
-        generateReport(results.getReportDir());
     }
 
-    public static void generateReport(String karateOutputPath) {
+    public static void generateCucumberReport(String karateOutputPath) {
         Collection<File> jsonFiles = FileUtils.listFiles(
                 new File(karateOutputPath), new String[]{"json"}, true
         );
@@ -36,9 +36,19 @@ public class ManagementTest {
         List<String> jsonPaths = new ArrayList<>(jsonFiles.size());
         jsonFiles.forEach(file -> jsonPaths.add(file.getAbsolutePath()));
 
-        Configuration config = new Configuration(new File("build"), "Petstore-Karate");
+        File reportOutputDirectory = new File("build/cucumber-html-reports");
+        String projectName = "Petstore Karate API Tests";
+
+        Configuration config = new Configuration(reportOutputDirectory, projectName);
+
+        config.setBuildNumber("1.0");
+        config.addClassifications("Platform", "Windows");
+        config.addClassifications("Browser", "API Tests");
+        config.addClassifications("Branch", "main");
 
         ReportBuilder reportBuilder = new ReportBuilder(jsonPaths, config);
         reportBuilder.generateReports();
+
+        System.out.println("Reporte HTML de Cucumber generado en: build/cucumber-html-reports/");
     }
 }
