@@ -1,0 +1,34 @@
+CONCLUSIONES - Ejercicio API Petstore
+--------------------------------------
+
+1. Automatización de pruebas de API:
+   - Se logró implementar un conjunto completo de pruebas sobre la API de Petstore utilizando el framework Karate.
+   - Los escenarios contemplaron: creación de una mascota, consulta por ID, actualización de datos (nombre y estado) y verificación por estatus.
+
+2. Manejo de datos externos:
+   - Los datos iniciales de la mascota se parametrizaron a través del archivo JSON `new-pet.json`, cumpliendo con la instrucción de usar fuentes externas.
+   - Esto facilita la modificación de entradas sin alterar los escenarios en el archivo `.feature`.
+
+3. Configuración técnica:
+   - Se trabajó con JDK 17.0.16, Gradle 7.6.1 e IntelliJ IDEA como IDE principal.
+   - Karate en su versión 1.4.1 se integró exitosamente junto con librerías adicionales (`commons-io` y `cucumber-reporting`).
+   - La base URL de la API fue definida en `karate-config.js`, lo que permite la reutilización y flexibilidad por entorno.
+
+4. Reportes:
+   - Los reportes se generan en dos formatos:
+     a) Reportes estándar de Karate en la carpeta `target`.
+     b) Reportes profesionales en HTML usando la librería `cucumber-reporting`, almacenados en `build/cucumber-html-reports`.
+   - Estos reportes incluyen métricas, estadísticas y un desglose detallado de cada escenario ejecutado.
+
+5. Retos encontrados:
+   - Ajustes en los match de validaciones, debido a diferencias entre valores esperados y retornados por la API.
+   - Errores iniciales de localización del archivo `.feature`, corregidos con el uso de `classpath:features`.
+   - Configuración de dependencias en Gradle, solucionada agregando `karate-junit5` y `cucumber-reporting`.
+
+6. Valor agregado:
+   - Se documentó detalladamente en el archivo README.md todos los prerequisitos, dependencias, comandos de instalación y pasos de ejecución.
+   - Se incluyó la generación automática de reportes HTML personalizados con clasificaciones de plataforma, entorno y rama.
+   - El proyecto quedó preparado para ejecución paralela y escalabilidad en escenarios futuros.
+
+CONCLUSIÓN GENERAL:
+La implementación cumple con los requisitos planteados en el ejercicio de API, garantizando que cualquier evaluador pueda reproducir las pruebas sobre Petstore desde cero. El proyecto refleja buenas prácticas en pruebas de servicios REST, manejo de datos externos, generación de reportes y documentación clara.
